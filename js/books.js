@@ -11,25 +11,20 @@ class Book {
 const someBooks = [
   {
     name: 'Don Quijote de la Mancha',
-    author: 'Miguel de Cervantes Saavedra',
+    author: 'Miguel de Cervantes Saavedra'
   },
   {
     name: 'La ilitada',
-    author: 'Homero',
+    author: 'Homero'
   }
 ];
 
 // Loading existing books data from local storage if there is already
 // existing data, otherwise, creates an empty array.
 let booksData = JSON.parse(localStorage.getItem('books'));
-console.log(booksData);
-console.log('iniciado');
-if( booksData == null || booksData.length === 0){
+if (booksData == null || booksData.length === 0) {
   booksData = someBooks;
 }
-console.log(booksData);
-
-
 
 // Function to update local storage for books data
 function updateData() {
@@ -57,7 +52,7 @@ function addBook(name, author) {
 if (booksData.length > 0) {
   booksData.forEach((book, i) => {
     const bookElement = document.createElement('div');
-    if(i%2==0){
+    if (i % 2 === 0) {
       bookElement.className = 'book_bg';
     } else {
       bookElement.className = 'book';

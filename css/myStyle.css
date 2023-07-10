@@ -1,35 +1,35 @@
 .book_bg {
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(213, 216, 218);
-    justify-content: space-between;
-    align-items: center;
-    justify-items: center;
-    align-content: center;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(213, 216, 218);
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
 }
 
 .book {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .book p {
-    margin: 0;
+  margin: 0;
 }
 
 .book_bg p {
-    margin: 0;
+  margin: 0;
 }
 
 .myNavbar {
-    position: fixed;
-    width: 100%;
+  position: fixed;
+  width: 100%;
 }
 
 .myFooter {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
