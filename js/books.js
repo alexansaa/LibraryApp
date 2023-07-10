@@ -43,7 +43,6 @@ function addBook(name, author) {
   updateData();
 
   const bookElement = document.createElement('div');
-  bookElement.className = 'book';
   bookElement.innerHTML = `<p>${name} by ${author}</p>
                         <button>Remove</button>`;
   bookElement.querySelector('button').addEventListener('click', () => {
