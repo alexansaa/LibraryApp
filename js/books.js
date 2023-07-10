@@ -8,9 +8,28 @@ class Book {
   }
 }
 
+const someBooks = [
+  {
+    name: 'Don Quijote de la Mancha',
+    author: 'Miguel de Cervantes Saavedra',
+  },
+  {
+    name: 'La ilitada',
+    author: 'Homero',
+  }
+];
+
 // Loading existing books data from local storage if there is already
 // existing data, otherwise, creates an empty array.
-let booksData = JSON.parse(localStorage.getItem('books') || '[]');
+let booksData = JSON.parse(localStorage.getItem('books'));
+console.log(booksData);
+console.log('iniciado');
+if( booksData == null || booksData.length === 0){
+  booksData = someBooks;
+}
+console.log(booksData);
+
+
 
 // Function to update local storage for books data
 function updateData() {
@@ -25,7 +44,7 @@ function addBook(name, author) {
 
   const bookElement = document.createElement('div');
   bookElement.className = 'book';
-  bookElement.innerHTML = `<h2>${name} by ${author}</h2>
+  bookElement.innerHTML = `<p>${name} by ${author}</p>
                         <button>Remove</button>`;
   bookElement.querySelector('button').addEventListener('click', () => {
     booksData = booksData.filter((item) => item.name !== name);
@@ -37,10 +56,14 @@ function addBook(name, author) {
 }
 
 if (booksData.length > 0) {
-  booksData.forEach((book) => {
+  booksData.forEach((book, i) => {
     const bookElement = document.createElement('div');
-    bookElement.className = 'book';
-    bookElement.innerHTML = `<h2>${book.name} by ${book.author}</h2>
+    if(i%2==0){
+      bookElement.className = 'book_bg';
+    } else {
+      bookElement.className = 'book';
+    }
+    bookElement.innerHTML = `<p>"${book.name}" by ${book.author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
       booksData = booksData.filter((item) => item.name !== book.name);
