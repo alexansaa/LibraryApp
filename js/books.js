@@ -7,6 +7,8 @@ class Bookshelf {
   }
 }
 
+const bookshelf = new Bookshelf();
+
 class Book {
   static someBooks = [
     {
@@ -51,7 +53,7 @@ class Book {
   }
 }
 
-const bookshelf = new Bookshelf();
+
 
 // Loading existing books data from local storage if there is already
 // existing data, otherwise, creates an empty array.
