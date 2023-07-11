@@ -8,6 +8,42 @@ class Book {
   }
 }
 
+class Bookshelf {
+  constructor() {
+    this.shelf = [];
+  }
+}
+
+class Methods {
+  static addNewBook(name, author) {
+    const newBook = new Book(name, author);
+    bookshelf.shelf.push(newBook);
+    Methods.updateData();
+
+    const bookElement = document.createElement('div');
+    bookElement.className = 'book';
+    bookElement.innerHTML = `<p>${name} by ${author}</p>
+                          <button>Remove</button>`;
+    bookElement.querySelector('button').addEventListener('click', () => {
+      Methods.removeBook(name);
+      bookElement.remove();
+      Methods.updateData();
+    });
+
+    bookCtr.appendChild(bookElement);
+  }
+
+  static removeBook(name) {
+    bookshelf.shelf = bookshelf.shelf.filter((item) => item.name !== name);
+  }
+
+  static updateData() {
+    localStorage.setItem('books', JSON.stringify(bookshelf.shelf));
+  }
+}
+
+const methods = new Methods();
+
 const someBooks = [
   {
     name: 'Don Quijote de la Mancha',
@@ -19,50 +55,25 @@ const someBooks = [
   }
 ];
 
+const bookshelf = new Bookshelf();
+
 // Loading existing books data from local storage if there is already
 // existing data, otherwise, creates an empty array.
-let booksData = JSON.parse(localStorage.getItem('books'));
-if (booksData == null || booksData.length === 0) {
-  booksData = someBooks;
+bookshelf.shelf = JSON.parse(localStorage.getItem('books'));
+if (bookshelf.shelf === null || bookshelf.shelf.length === 0) {
+  bookshelf.shelf = someBooks;
 }
 
-// Function to update local storage for books data
-function updateData() {
-  localStorage.setItem('books', JSON.stringify(booksData));
-}
-
-// Add new book function
-function addBook(name, author) {
-  const newBook = new Book(name, author);
-  booksData.push(newBook);
-  updateData();
-
-  const bookElement = document.createElement('div');
-  bookElement.innerHTML = `<p>${name} by ${author}</p>
-                        <button>Remove</button>`;
-  bookElement.querySelector('button').addEventListener('click', () => {
-    booksData = booksData.filter((item) => item.name !== name);
-    bookElement.remove();
-    updateData();
-  });
-
-  bookCtr.appendChild(bookElement);
-}
-
-if (booksData.length > 0) {
-  booksData.forEach((book, i) => {
+if (bookshelf.shelf.length > 0) {
+  bookshelf.shelf.forEach((book, i) => {
     const bookElement = document.createElement('div');
-    if (i % 2 === 0) {
-      bookElement.className = 'book_bg';
-    } else {
-      bookElement.className = 'book';
-    }
+    bookElement.className = 'book';
     bookElement.innerHTML = `<p>"${book.name}" by ${book.author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
-      booksData = booksData.filter((item) => item.name !== book.name);
+      Methods.removeBook(book.name);
       bookElement.remove();
-      updateData();
+      Methods.updateData();
     });
 
     bookCtr.appendChild(bookElement);
@@ -73,5 +84,5 @@ addBtn.addEventListener('click', () => {
   const name = document.getElementById('name').value;
   const author = document.getElementById('author').value;
 
-  addBook(name, author);
+  Methods.addNewBook(name, author);
 });
