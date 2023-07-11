@@ -6,28 +6,20 @@ class Book {
     this.name = name;
     this.author = author;
   }
-}
 
-class Bookshelf {
-  constructor() {
-    this.shelf = [];
-  }
-}
-
-class Methods {
   static addNewBook(name, author) {
     const newBook = new Book(name, author);
     bookshelf.shelf.push(newBook);
-    Methods.updateData();
+    Book.updateData();
 
     const bookElement = document.createElement('div');
     bookElement.className = 'book';
-    bookElement.innerHTML = `<p>${name} by ${author}</p>
+    bookElement.innerHTML = `<p>"${name}" by ${author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
-      Methods.removeBook(name);
+      Book.removeBook(name);
       bookElement.remove();
-      Methods.updateData();
+      Book.updateData();
     });
 
     bookCtr.appendChild(bookElement);
@@ -42,7 +34,11 @@ class Methods {
   }
 }
 
-const methods = new Methods();
+class Bookshelf {
+  constructor() {
+    this.shelf = [];
+  }
+}
 
 const someBooks = [
   {
@@ -71,9 +67,9 @@ if (bookshelf.shelf.length > 0) {
     bookElement.innerHTML = `<p>"${book.name}" by ${book.author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
-      Methods.removeBook(book.name);
+      Book.removeBook(book.name);
       bookElement.remove();
-      Methods.updateData();
+      Book.updateData();
     });
 
     bookCtr.appendChild(bookElement);
@@ -84,5 +80,5 @@ addBtn.addEventListener('click', () => {
   const name = document.getElementById('name').value;
   const author = document.getElementById('author').value;
 
-  Methods.addNewBook(name, author);
+  Book.addNewBook(name, author);
 });
