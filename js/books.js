@@ -2,14 +2,8 @@ const bookCtr = document.getElementById('book-ctr');
 const addBtn = document.getElementById('add-btn');
 
 class Bookshelf {
-  constructor() {
-    this.shelf = [];
-  }
-}
+  static shelf = [];
 
-const bookshelf = new Bookshelf();
-
-class Book {
   static someBooks = [
     {
       name: 'Don Quijote de la Mancha',
@@ -27,51 +21,49 @@ class Book {
   }
 
   static addNewBook(name, author) {
-    const newBook = new Book(name, author);
-    bookshelf.shelf.push(newBook);
-    Book.updateData();
+    const newBook = new Bookshelf(name, author);
+    Bookshelf.shelf.push(newBook);
+    Bookshelf.updateData();
 
     const bookElement = document.createElement('div');
     bookElement.className = 'book';
     bookElement.innerHTML = `<p>"${name}" by ${author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
-      Book.removeBook(name);
+      Bookshelf.removeBook(name);
       bookElement.remove();
-      Book.updateData();
+      Bookshelf.updateData();
     });
 
     bookCtr.appendChild(bookElement);
   }
 
   static removeBook(name) {
-    bookshelf.shelf = bookshelf.shelf.filter((item) => item.name !== name);
+    Bookshelf.shelf = Bookshelf.shelf.filter((item) => item.name !== name);
   }
 
   static updateData() {
-    localStorage.setItem('books', JSON.stringify(bookshelf.shelf));
+    localStorage.setItem('books', JSON.stringify(Bookshelf.shelf));
   }
 }
 
-
-
 // Loading existing books data from local storage if there is already
 // existing data, otherwise, creates an empty array.
-bookshelf.shelf = JSON.parse(localStorage.getItem('books'));
-if (bookshelf.shelf === null || bookshelf.shelf.length === 0) {
-  bookshelf.shelf = Book.someBooks;
+Bookshelf.shelf = JSON.parse(localStorage.getItem('books'));
+if (Bookshelf.shelf === null || Bookshelf.shelf.length === 0) {
+  Bookshelf.shelf = Bookshelf.someBooks;
 }
 
-if (bookshelf.shelf.length > 0) {
-  bookshelf.shelf.forEach((book) => {
+if (Bookshelf.shelf.length > 0) {
+  Bookshelf.shelf.forEach((book) => {
     const bookElement = document.createElement('div');
     bookElement.className = 'book';
     bookElement.innerHTML = `<p>"${book.name}" by ${book.author}</p>
                           <button>Remove</button>`;
     bookElement.querySelector('button').addEventListener('click', () => {
-      Book.removeBook(book.name);
+      Bookshelf.removeBook(book.name);
       bookElement.remove();
-      Book.updateData();
+      Bookshelf.updateData();
     });
 
     bookCtr.appendChild(bookElement);
@@ -82,5 +74,5 @@ addBtn.addEventListener('click', () => {
   const name = document.getElementById('name').value;
   const author = document.getElementById('author').value;
 
-  Book.addNewBook(name, author);
+  Bookshelf.addNewBook(name, author);
 });
