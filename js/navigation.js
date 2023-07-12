@@ -6,6 +6,9 @@ const contact = document.querySelector('#Contact');
 // Navigation links array
 const links = document.querySelectorAll('#myLinks a');
 
+add.classList.add('hidden');
+contact.classList.add('hidden');
+
 // Function for showing the chosen section when a link gets clicked
 function GoToSection(e) {
   // Name of the section to show
