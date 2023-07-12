@@ -1,7 +1,7 @@
 // Sections
-const list = document.getElementById('List');
-const add = document.getElementById('New');
-const contact = document.getElementsByName('Contact');
+const list = document.querySelector('#List');
+const add = document.querySelector('#New');
+const contact = document.querySelector('#Contact');
 
 // Navigation links array
 const links = document.querySelectorAll('#myLinks a');
@@ -10,17 +10,23 @@ const links = document.querySelectorAll('#myLinks a');
 function GoToSection(e) {
     // Name of the section to show
     const name = e.target.textContent;
-    console.log(name);
+    //console.log(name);
 
     switch(name) {
         case 'List':
-                // Change the classes of the sections in the way that the section selected is the only one visible,
-                // there's already a class selector created in CSS to hide the sections called "hidden"
-
+            list.classList.remove('hidden');
+            add.classList.add('hidden');
+            contact.classList.add('hidden');
             break;
         case 'Add New':
+            list.classList.add('hidden');
+            add.classList.remove('hidden');
+            contact.classList.add('hidden');
             break;
         case 'Contact':
+            list.classList.add('hidden');
+            add.classList.add('hidden');
+            contact.classList.remove('hidden');
             break;
         default:
             break;
