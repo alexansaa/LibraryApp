@@ -8,32 +8,32 @@ const links = document.querySelectorAll('#myLinks a');
 
 // Function for showing the chosen section when a link gets clicked
 function GoToSection(e) {
-    // Name of the section to show
-    const name = e.target.textContent;
-    //console.log(name);
+  // Name of the section to show
+  const name = e.target.textContent;
+  //console.log(name);
 
-    switch(name) {
-        case 'List':
-            list.classList.remove('hidden');
-            add.classList.add('hidden');
-            contact.classList.add('hidden');
-            break;
-        case 'Add New':
-            list.classList.add('hidden');
-            add.classList.remove('hidden');
-            contact.classList.add('hidden');
-            break;
-        case 'Contact':
-            list.classList.add('hidden');
-            add.classList.add('hidden');
-            contact.classList.remove('hidden');
-            break;
-        default:
-            break;
-    }
+  switch(name) {
+    case 'List':
+      list.classList.remove('hidden');
+      add.classList.add('hidden');
+      contact.classList.add('hidden');
+      break;
+    case 'Add New':
+      list.classList.add('hidden');
+      add.classList.remove('hidden');
+      contact.classList.add('hidden');
+      break;
+    case 'Contact':
+      list.classList.add('hidden');
+      add.classList.add('hidden');
+      contact.classList.remove('hidden');
+      break;
+    default:
+      break;
+  }
 }
 
 // Click event listener added for each navigation link
 links.forEach((section) => {
-    section.addEventListener('click', GoToSection);
+  section.addEventListener('click', GoToSection);
 });
