@@ -10,9 +10,8 @@ const links = document.querySelectorAll('#myLinks a');
 function GoToSection(e) {
   // Name of the section to show
   const name = e.target.textContent;
-  //console.log(name);
 
-  switch(name) {
+  switch (name) {
     case 'List':
       list.classList.remove('hidden');
       add.classList.add('hidden');
