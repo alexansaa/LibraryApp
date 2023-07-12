@@ -9,8 +9,9 @@ const links = document.querySelectorAll('#myLinks a');
 // Function for showing the chosen section when a link gets clicked
 function GoToSection(e) {
     // Name of the section to show
-    const name = e.target.textContent();
-    
+    const name = e.target.textContent;
+    console.log(name);
+
     switch(name) {
         case 'List':
                 // Change the classes of the sections in the way that the section selected is the only one visible,
