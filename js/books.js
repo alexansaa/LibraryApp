@@ -1,5 +1,6 @@
 const bookCtr = document.getElementById('book-ctr');
 const addBtn = document.getElementById('add-btn');
+const alertMsg = document.getElementById('alert-msg');
 
 class Bookshelf {
   static shelf = [];
@@ -70,9 +71,29 @@ if (Bookshelf.shelf.length > 0) {
   });
 }
 
+let alertTimeOut = null;
+
 addBtn.addEventListener('click', () => {
   const name = document.getElementById('name').value;
   const author = document.getElementById('author').value;
+
+  if (name === '' || author === '') {
+    clearTimeout(alertTimeOut);
+    alertMsg.textContent = 'Name and author of the book should be filled';
+    alertTimeOut = setTimeout(() => {
+      alertMsg.textContent = '';
+    }, 1500);
+    return;
+  }
+  alertMsg.classList.add('success');
+  alertMsg.textContent = 'Book succesfully added!';
+  alertTimeOut = setTimeout(() => {
+    alertMsg.textContent = '';
+    alertMsg.classList.remove('success');
+  }, 1500);
+
+  document.getElementById('name').value = '';
+  document.getElementById('author').value = '';
 
   Bookshelf.addNewBook(name, author);
 });

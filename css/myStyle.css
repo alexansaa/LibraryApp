@@ -25,3 +25,19 @@
   bottom: 0;
   width: 100%;
 }
+
+#myLinks a:hover {
+  cursor: pointer;
+}
+
+#alert-msg {
+  color: red;
+}
+
+#alert-msg.success {
+  color: green;
+}
+
+.hidden {
+  display: none;
+}
