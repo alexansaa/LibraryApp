@@ -44,7 +44,7 @@ Building a Book List Application
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- Coming soon
+- [Check the project!] (https://alexansaa.github.io/LibraryApp/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
